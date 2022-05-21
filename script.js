@@ -12,10 +12,11 @@ function updateClock(){
     let hour = now.getHours();
     let minute = now.getMinutes();
     let second = now.getSeconds();
+    let miliS = now.getMilliseconds();
 
     digitalElement.innerHTML = `${fixZero(hour)}:${fixZero(minute)}:${fixZero(second)}`;
 
-    let sDeg = -90 + (360/60) * second;
+    let sDeg = -90 + (360/60 * second) + (miliS * (30/5000));
     let mDeg = -90 + (360/60) * minute;
     let hDeg = (360 / 12 * hour) + ((30/60) * minute) - 90;
 
@@ -29,5 +30,5 @@ function fixZero(time){
 }
 
 
-setInterval(updateClock, 1000);
+setInterval(updateClock, 1);
 updateClock();
